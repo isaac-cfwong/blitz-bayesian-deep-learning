@@ -19,7 +19,7 @@ class TrainableRandomDistribution(nn.Module):
 
     def sample(self):
         """
-        Samples weights by sampling form a Normal distribution, multiplying by a sigma, which is 
+        Samples weights by sampling form a Normal distribution, multiplying by a sigma, which is
         a function from a trainable parameter, and adding a mean
 
         sets those weights as the current ones
@@ -45,9 +45,9 @@ class TrainableRandomDistribution(nn.Module):
         assert (self.w is not None), "You can only have a log posterior for W if you've already sampled it"
         if w is None:
             w = self.w
-        
+
         log_sqrt2pi = np.log(np.sqrt(2*self.pi))
-        log_posteriors =  -log_sqrt2pi - torch.log(self.sigma) - (((w - self.mu) ** 2)/(2 * self.sigma ** 2)) - 0.5
+        log_posteriors =  -log_sqrt2pi - torch.log(self.sigma) - (((w - self.mu) ** 2)/(2 * self.sigma ** 2))
         return log_posteriors.sum()
 
 class PriorWeightDistribution(nn.Module):
@@ -72,7 +72,7 @@ class PriorWeightDistribution(nn.Module):
             self.dist1 = dist
             self.dist2 = None
 
-        
+
 
     def log_prior(self, w):
         """
